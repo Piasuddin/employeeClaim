@@ -1,0 +1,14 @@
+.mat-form-field{
+  width: 100%;
+}
+.file-uploader {
+  min-width: 200px;
+  height: 200px;
+  border: 1px solid #cdcdcd;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 200px;
+  text-align: center;
+  min-width: 200px;
+  cursor: pointer;
+}

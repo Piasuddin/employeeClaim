@@ -1,0 +1,59 @@
+<div class="row d-flex justify-content-end">
+  <button mat-raised-button color="primary" routerLink='/add'>Add New Claim</button>
+</div>
+<div class="row">
+  <div class="mat-elevation-z8 mt-3 col-sm-12">
+    <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
+        <ng-container matColumnDef="employeeName">
+            <th mat-header-cell *matHeaderCellDef class="text-center">Employee Name
+            </th>
+            <td mat-cell *matCellDef="let row"> {{row?.employee?.employeeName}} </td>
+        </ng-container>
+        <ng-container matColumnDef="mobile">
+            <th mat-header-cell *matHeaderCellDef class="text-center">Mobile
+            </th>
+            <td mat-cell *matCellDef="let row"> {{row?.employee?.mobile}} </td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef class="text-center">Email
+            </th>
+            <td mat-cell *matCellDef="let row" class="text-center"> {{row?.employee?.email}} </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef class="text-center">Status
+          </th>
+          <td mat-cell *matCellDef="let row" class="text-center">
+            <span class="badge badge-success" *ngIf="row.status == 2">{{getStatus(row?.status)}}</span>
+            <span class="badge badge-primary" *ngIf="row.status == 1">{{getStatus(row?.status)}}</span>
+            <span class="badge badge-danger" *ngIf="row.status == 3">{{getStatus(row?.status)}}</span>
+          </td>
+      </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> Action </th>
+            <td mat-cell *matCellDef="let row" [style.color]="" class="text-center">
+              <ng-container *ngIf="row.status == 1">
+                <button mat-button mat-stroked-button color="warn" class="mat-btn-sm"
+                    [matMenuTriggerFor]="beforeMenu">Action
+                    <i class="material-icons">
+                        navigate_next
+                    </i>
+                </button>
+                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                    <button (click)="onAction(employeeClaimStatus.Approved, row.id)" class="mat-menu-item-list"
+                        mat-menu-item>Approve</button>
+                    <button (click)="onAction(employeeClaimStatus.Rejected, row.id)" class="mat-menu-item-list"
+                        mat-menu-item>Reject</button>
+                </mat-menu>
+              </ng-container>
+              <ng-container *ngIf="row.status != 1">
+                No Action To Perform
+              </ng-container>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
