@@ -2,7 +2,7 @@
 This is a sample application for add employee claim and perform approval or rejectional operation on these claims
 
 ## How to Run This App
-First Download this app both client and Server
+First Download this app both client and Server. Open server solution with visual studio.
 Change the sql server connection string in appsetting.json file with your own sql server name.
 As this application is developed with code first approch so you need to run following command in package manager console
 1) Add-Migration
